@@ -1,0 +1,17 @@
+# Ignore Python virtual environment
+project/ 
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore IDE/editor specific files
+.DS_Store        # macOS Finder files
+.vscode/         # Visual Studio Code settings (if applicable)
+
+# Ignore environment variables
+.env
+
+# Ignore other temporary or log files
+*.log            # Log files, if any
