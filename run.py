@@ -1,4 +1,6 @@
-from fivesquarefeets import app
+from fivesquarefeets import create_app
 
-if __name__=='__main__':
-    app.run(debug=True)
+app = create_app()  # Create the app instance
+
+if __name__ == '__main__':
+    app.run(debug=True)  # Run the app in debug mode
