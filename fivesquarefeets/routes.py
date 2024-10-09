@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import Blueprint, current_app,render_template, url_for, flash, redirect, request
 from fivesquarefeets import db
-from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm, PropertyForm
 from fivesquarefeets.models import User, Property
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -82,3 +82,48 @@ def account():
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
+
+@bp.route("/myproperty",methods=['GET', 'POST'])
+def myproperty():
+    return render_template('myproperty.html', title='My Property')
+
+# Function to save property images
+def save_property_image(form_image):
+    random_hex = secrets.token_hex(8)
+    _, f_ext = os.path.splitext(form_image.filename)
+    image_fn = random_hex + f_ext
+    image_path = os.path.join(bp.root_path, 'static/property_pics', image_fn)
+
+    output_size = (800, 800)
+    i = Image.open(form_image)
+    i.thumbnail(output_size)
+    i.save(image_path)
+
+    return image_fn
+
+@bp.route("/property/new", methods=['GET', 'POST'])
+@login_required
+def add_property():
+    form = PropertyForm()
+    if form.validate_on_submit():
+        if form.images.data:
+            image_file = save_property_image(form.images.data)
+        else:
+            image_file = None
+
+        property = Property(property_title=form.property_title.data,
+                            location=form.location.data,
+                            address=form.address.data,
+                            property_type=form.property_type.data,
+                            status=form.status.data,
+                            price=form.price.data,
+                            description=form.description.data,
+                            images=image_file,
+                            author=current_user)
+
+        db.session.add(property)
+        db.session.commit()
+        flash('Your property has been added!', 'success')
+        return redirect(url_for('main.home'))  # Redirect to homepage
+
+    return render_template('add_property.html', title='New Property', form=form)
