@@ -10,6 +10,7 @@
 
       <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
       
+      
       {% if title %}
       <title>5 square feets- {{title}}</title>
       {% else %}
@@ -29,7 +30,7 @@
                   <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
                   <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
                   <a class="nav-item nav-link" href="{{ url_for('main.about') }}">Search</a>
-                  <a class="nav-item nav-link" href="{{ url_for('main.about') }}">Property</a>
+                  <a class="nav-item nav-link" href="{{ url_for('main.all_properties') }}">Property</a>
                   <a class="nav-item nav-link" href="{{ url_for('main.about') }}">Help & Support</a>
 
                 </div>

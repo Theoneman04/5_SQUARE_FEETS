@@ -61,5 +61,6 @@ class PropertyForm(FlaskForm):
                                             ('pending', 'Pending'), ('sold', 'Sold')], validators=[DataRequired()])
     price = DecimalField('Price', validators=[DataRequired(), NumberRange(min=0)], places=2)
     description = TextAreaField('Description', validators=[DataRequired(), Length(min=20)])
-    images = FileField('Property Images', validators=[FileAllowed(['jpg', 'png', 'webp'])])
-    submit = SubmitField('Add Property')
+    images = FileField('Property Images (optional)', validators=[FileAllowed(['jpg', 'png', 'webp'])])
+    submit = SubmitField('Update Property')  # Change the label to 'Update Property'
+

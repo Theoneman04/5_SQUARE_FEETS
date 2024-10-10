@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ property.property_title }}</h1>
+    <h4>Location: {{ property.location }}</h4>
+    <h4>Address: {{ property.address }}</h4>
+    <h4>Type: {{ property.property_type }}</h4>
+    <h4>Status: {{ property.status }}</h4>
+    <h4>Price: ${{ property.price }}</h4>
+    <h4>Description:</h4>
+    <p>{{ property.description }}</p>
+
+    {% if property.images %}
+        <h4>Images:</h4>
+        <div class="property-images">
+            {% for image in property.images.split(',') %}
+                <img src="{{ url_for('static', filename='property_pics/' ~ image.strip()) }}" alt="Property Image" class="img-fluid" style="max-width: 400px; margin: 10px;">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    
+    </form>
+
+    <a href="{{ url_for('main.all_properties') }}" class="btn btn-secondary">Back to Properties</a>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="my-4">{{ property.property_title }}</h1>
+    <img src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="img-fluid mb-4" alt="{{ property.property_title }}">
+    <h5>Details</h5>
+    <p><strong>Location:</strong> {{ property.location }}</p>
+    <p><strong>Address:</strong> {{ property.address }}</p>
+    <p><strong>Type:</strong> {{ property.property_type }}</p>
+    <p><strong>Status:</strong> {{ property.status }}</p>
+    <p><strong>Price:</strong> ${{ property.price }}</p>
+    <p><strong>Description:</strong> {{ property.description }}</p>
+    <h5>Published by: {{ property.author.username }}</h5>
+    <a href="{{ url_for('main.all_properties') }}" class="btn btn-secondary">Back to Properties</a>
+    <!-- Add to Wishlist Button -->
+    <form action="{{ url_for('main.add_to_wishlist', property_id=property.property_id) }}" method="POST" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary">Add to Wishlist</button>
+</div>
+{% endblock %}

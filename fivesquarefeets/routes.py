@@ -1,10 +1,10 @@
 import os
 import secrets
 from PIL import Image
-from flask import Blueprint, current_app,render_template, url_for, flash, redirect, request
+from flask import Blueprint, current_app, render_template, url_for, flash, redirect, request
 from fivesquarefeets import db
 from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm, PropertyForm
-from fivesquarefeets.models import User, Property
+from fivesquarefeets.models import User, Property,Wishlist,Booking,Review
 from flask_login import login_user, current_user, logout_user, login_required
 
 # Create a Blueprint for your routes
@@ -83,9 +83,12 @@ def account():
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
-@bp.route("/myproperty",methods=['GET', 'POST'])
+@bp.route("/myproperty", methods=['GET'])
+@login_required
 def myproperty():
-    return render_template('myproperty.html', title='My Property')
+    # Fetch all properties added by the current user
+    properties = Property.query.filter_by(user_id=current_user.id).all()
+    return render_template('myproperty.html', title='My Property', properties=properties)
 
 # Function to save property images
 def save_property_image(form_image):
@@ -111,19 +114,142 @@ def add_property():
         else:
             image_file = None
 
-        property = Property(property_title=form.property_title.data,
-                            location=form.location.data,
-                            address=form.address.data,
-                            property_type=form.property_type.data,
-                            status=form.status.data,
-                            price=form.price.data,
-                            description=form.description.data,
-                            images=image_file,
-                            author=current_user)
+        property = Property(
+            property_title=form.property_title.data,
+            location=form.location.data,
+            address=form.address.data,
+            property_type=form.property_type.data,
+            status=form.status.data,
+            price=form.price.data,
+            description=form.description.data,
+            images=image_file,
+            author=current_user
+        )
 
         db.session.add(property)
         db.session.commit()
         flash('Your property has been added!', 'success')
-        return redirect(url_for('main.home'))  # Redirect to homepage
+        return redirect(url_for('main.myproperty'))  # Redirect to "My Property" page
 
     return render_template('add_property.html', title='New Property', form=form)
+
+@bp.route("/property1/<int:property_id>")
+@login_required
+def view_property(property_id):
+    property = Property.query.get_or_404(property_id)
+    if property.author != current_user:
+        flash('You do not have permission to view this property.', 'danger')
+        return redirect(url_for('main.myproperty'))
+    return render_template('view_property.html', title=property.property_title, property=property)
+
+@bp.route("/property/<int:property_id>/edit", methods=['GET', 'POST'])
+@login_required
+def edit_property(property_id):
+    property = Property.query.get_or_404(property_id)
+    
+    if property.author != current_user:
+        flash('You do not have permission to edit this property.', 'danger')
+        return redirect(url_for('main.myproperty'))
+
+    form = PropertyForm()
+
+    if form.validate_on_submit():
+        property.property_title = form.property_title.data
+        property.location = form.location.data
+        property.address = form.address.data
+        property.property_type = form.property_type.data
+        property.status = form.status.data
+        property.price = form.price.data
+        property.description = form.description.data
+        
+        if form.images.data:
+            # If a new image is uploaded, save it
+            image_file = save_property_image(form.images.data)
+            property.images = image_file  # Update the image field
+            
+        db.session.commit()
+        flash('Your property has been updated!', 'success')
+        return redirect(url_for('main.myproperty'))  # Redirect to myproperty page
+
+    elif request.method == 'GET':
+        form.property_title.data = property.property_title
+        form.location.data = property.location
+        form.address.data = property.address
+        form.property_type.data = property.property_type
+        form.status.data = property.status
+        form.price.data = property.price
+        form.description.data = property.description
+
+    return render_template('edit_property.html', title='Edit Property', form=form, property=property)
+
+@bp.route("/property/<int:property_id>/delete", methods=['POST'])
+@login_required
+def delete_property(property_id):
+    property = Property.query.get_or_404(property_id)
+    
+    if property.author != current_user:
+        flash('You do not have permission to delete this property.', 'danger')
+        return redirect(url_for('main.myproperty'))
+
+    # Optionally, delete the image file(s) from the server
+    if property.images:
+        image_files = property.images.split(',')
+        for image_file in image_files:
+            image_path = os.path.join(bp.root_path, 'static/property_pics', image_file.strip())
+            if os.path.exists(image_path):
+                os.remove(image_path)
+    
+    db.session.delete(property)
+    db.session.commit()
+    flash('Your property has been deleted!', 'success')
+    return redirect(url_for('main.myproperty'))
+@bp.route("/property")
+def all_properties():
+    properties = Property.query.all()  # Fetch all properties
+    return render_template('all_properties.html', title='All Properties', properties=properties)
+
+@bp.route("/property/<int:property_id>")
+def detailed_view(property_id):
+    property = Property.query.get_or_404(property_id)
+    return render_template('detailed_view.html', property=property)
+
+@bp.route("/property/<int:property_id>/add_to_wishlist", methods=['POST'])
+@login_required
+def add_to_wishlist(property_id):
+    property = Property.query.get_or_404(property_id)
+
+    # Check if the property is already in the wishlist
+    existing_wishlist_item = Wishlist.query.filter_by(user_id=current_user.id, property_id=property_id).first()
+    if existing_wishlist_item:
+        flash('This property is already in your wishlist!', 'info')
+    else:
+        # Create a new wishlist item
+        wishlist_item = Wishlist(user_id=current_user.id, property_id=property_id)
+        db.session.add(wishlist_item)
+        db.session.commit()
+        flash('The property has been added to your wishlist!', 'success')
+
+    return redirect(url_for('main.detailed_view', property_id=property_id))
+
+@bp.route("/wishlist")
+@login_required
+def wishlist():
+    # Fetch the current user's wishlist with property details
+    wishlist_items = Wishlist.query.filter_by(user_id=current_user.id).all()
+    wishlist_properties = [Property.query.get(item.property_id) for item in wishlist_items]
+    return render_template('wishlist.html', wishlist_properties=wishlist_properties)
+
+
+@bp.route("/delete_from_wishlist/<int:property_id>", methods=["POST"])
+@login_required
+def delete_from_wishlist(property_id):
+    # Find the wishlist entry to delete
+    wishlist_entry = Wishlist.query.filter_by(user_id=current_user.id, property_id=property_id).first()
+    if wishlist_entry:
+        db.session.delete(wishlist_entry)
+        db.session.commit()
+        flash("Property removed from wishlist.", "success")
+    else:
+        flash("Property not found in wishlist.", "error")
+    return redirect(url_for('main.wishlist'))
+
