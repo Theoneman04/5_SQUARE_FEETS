@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+{% if properties %}
+    <ul class="list-group">
+        {% for property in properties %}
+            <li class="list-group-item">
+                <a href="{{ url_for('main.property_detail', property_id=property.property_id) }}">
+                    {{ property.property_title }}
+                </a>
+                <p>Location: {{ property.location }}</p>
+                <p>Type: {{ property.property_type }}</p>
+                <p>Status: {{ property.status }}</p>
+                <p>Price: {{ property.price }}</p>
+            </li>
+        {% endfor %}
+    
+    </ul>
+{% else %}
+    <p>No properties found matching your search.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+.button-container {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+    width: 30vh;
+}
+
+
+.offer-button {
+    width: 200px;
+    height: 250px;
+    background-color: #185d9a;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.offer-button:hover {
+    transform: scale(1.05);
+}
+
+.offer-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.offer-image-wishlist {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.offer-title {
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+}
