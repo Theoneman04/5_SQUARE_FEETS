@@ -3,7 +3,7 @@ import secrets
 from PIL import Image
 from flask import Blueprint, current_app, render_template, url_for, flash, redirect, request
 from fivesquarefeets import db
-from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm, PropertyForm
+from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm, PropertyForm, ReviewForm
 from fivesquarefeets.models import User, Property,Wishlist,Booking,Review
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -252,4 +252,25 @@ def delete_from_wishlist(property_id):
     else:
         flash("Property not found in wishlist.", "error")
     return redirect(url_for('main.wishlist'))
+
+
+@bp.route("/property/<int:property_id>/review", methods=['GET', 'POST'])
+@login_required
+def add_review(property_id):
+    current_property = Property.query.get_or_404(property_id)
+    form = ReviewForm()
+
+    if form.validate_on_submit():
+        review = Review(
+            user_id=current_user.id,
+            property_id=current_property.property_id,
+            rating=form.rating.data,
+            comment=form.comment.data
+        )
+        db.session.add(review)
+        db.session.commit()
+        flash('Your review has been added!', 'success')
+        return redirect(url_for('main.detailed_view', property_id=property_id))
+
+    return render_template('add_review.html', title=f'Review {current_property.property_title}', form=form, property=current_property)
 

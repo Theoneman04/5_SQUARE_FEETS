@@ -12,8 +12,44 @@
     <p><strong>Description:</strong> {{ property.description }}</p>
     <h5>Published by: {{ property.author.username }}</h5>
     <a href="{{ url_for('main.all_properties') }}" class="btn btn-secondary">Back to Properties</a>
+    
     <!-- Add to Wishlist Button -->
     <form action="{{ url_for('main.add_to_wishlist', property_id=property.property_id) }}" method="POST" style="margin-top: 20px;">
         <button type="submit" class="btn btn-primary">Add to Wishlist</button>
+    </form>
+
+    <h2>{{ property.property_title }}</h2>
+    
+    
+    <!-- Display average reviews -->
+    
+    <h3>Average Rating: 
+        {% if property.reviews|length > 0 %}
+            {{ (property.reviews|map(attribute='rating')|sum) / (property.reviews|length) }}
+        {% else %}
+            No ratings yet.
+        {% endif %}
+    </h3>
+    
+
+    <!-- Display existing reviews -->
+    <h3>Reviews</h3>
+    {% if property.reviews %}
+        <ul>
+            {% for review in property.reviews %}
+            <li>
+                <strong>{{ review.reviewer.username }}</strong> - {{ review.rating }}/5
+                <p>{{ review.comment }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews yet. Be the first to leave a review!</p>
+    {% endif %}
+    
+    <!-- Review Button -->
+    <a href="{{ url_for('main.add_review', property_id=property.property_id) }}" class="btn btn-primary">Add a Review</a>
+    
+    
 </div>
 {% endblock %}

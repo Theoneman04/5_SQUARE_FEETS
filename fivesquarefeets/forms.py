@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, DecimalField
+from wtforms import IntegerField,StringField, PasswordField, SubmitField, BooleanField, TextAreaField, SelectField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from fivesquarefeets.models import User
 
@@ -64,3 +64,7 @@ class PropertyForm(FlaskForm):
     images = FileField('Property Images (optional)', validators=[FileAllowed(['jpg', 'png', 'webp'])])
     submit = SubmitField('Update Property')  # Change the label to 'Update Property'
 
+class ReviewForm(FlaskForm):
+    rating = IntegerField('Rating (1-5)', validators=[DataRequired(), NumberRange(min=1, max=5)])
+    comment = TextAreaField('Comment', validators=[DataRequired(), Length(min=10)])
+    submit = SubmitField('Submit Review')
