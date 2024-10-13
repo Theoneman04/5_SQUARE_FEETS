@@ -5,11 +5,27 @@
     <h1 class="mb-4">My Properties</h1>
     
     <!-- New Property Button -->
-    <a href="{{ url_for('main.add_property') }}" class="btn btn-primary mb-4">New Property</a>
-
-     <!-- Go to Wishlist Button -->
-     <a href="{{ url_for('main.wishlist') }}" class="btn btn-success mb-4">Go to Wishlist</a>
+    <a href="{{ url_for('main.add_property') }}">
+        <div class="button-container">
+            <div class="offer-button">
+                <img src="/static/new_property.png" alt="Keyboard" class="offer-image">
+                <p class="offer-title">Add a New Property</p>
+            </div>
+        </div>
+    </a>
     
+    
+    
+    <!-- Go to Wishlist Button -->
+    <a href="{{ url_for('main.wishlist') }}">
+        <div class="button-container">
+            <div class="offer-button">
+                <img src="/static/wishlist.png" alt="Keyboard" class="offer-image">
+                <p class="offer-title">Wishlist</p>
+            </div>
+        </div>
+    </a>
+
     <!-- Properties Thumbnails -->
     <div class="row">
         {% if properties %}
