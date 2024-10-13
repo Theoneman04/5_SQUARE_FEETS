@@ -6,6 +6,8 @@ from fivesquarefeets import db
 from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm, PropertyForm, ReviewForm
 from fivesquarefeets.models import User, Property,Wishlist,Booking,Review
 from flask_login import login_user, current_user, logout_user, login_required
+from sqlalchemy import or_
+
 
 # Create a Blueprint for your routes
 bp = Blueprint('main', __name__)
@@ -273,4 +275,29 @@ def add_review(property_id):
         return redirect(url_for('main.detailed_view', property_id=property_id))
 
     return render_template('add_review.html', title=f'Review {current_property.property_title}', form=form, property=current_property)
+
+
+@bp.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query', '')
+    if query:
+        # Search for the query in multiple columns
+        properties = Property.query.filter(
+            or_(
+                Property.property_title.ilike(f'%{query}%'),
+                Property.location.ilike(f'%{query}%'),
+                Property.address.ilike(f'%{query}%'),
+                Property.property_type.ilike(f'%{query}%'),
+                Property.status.ilike(f'%{query}%')
+            )
+        ).all()
+    else:
+        properties = []
+    
+    return render_template('search_results.html', properties=properties, query=query)
+
+@bp.route('/property/<int:property_id>')
+def property_detail(property_id):
+    property = Property.query.get_or_404(property_id)
+    return render_template('property_detail.html', property=property)
 
