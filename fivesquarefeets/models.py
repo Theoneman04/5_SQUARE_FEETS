@@ -43,7 +43,7 @@ class Booking(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     property_id = db.Column(db.Integer, db.ForeignKey('property.property_id'), nullable=False)
     booking_date = db.Column(db.DateTime, nullable=False, default=datetime.now(timezone.utc))
-    status = db.Column(db.Enum('confirmed', 'pending', 'canceled', name='booking_status_enum'), default='pending', nullable=False)
+    status = db.Column(db.Enum('Confirmed', 'Pending', 'Canceled', name='booking_status_enum'), default='Confirmed', nullable=False)
 
     def __repr__(self):
         return f"Booking('{self.booking_id}', '{self.booking_date}', '{self.status}')"

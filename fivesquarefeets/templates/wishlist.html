@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ property.property_title }}</h5>
                             <p class="card-text"><strong>Location:</strong> {{ property.location }}</p>
-                            <p class="card-text"><strong>Price:</strong> ${{ "{:,.2f}".format(property.price) }}</p>
+                            <p class="card-text"><strong>Price:</strong> ₹{{ "{:,.2f}".format(property.price) }}</p>
                             <p class="card-text"><strong>Status:</strong> {{ property.status.replace('_', ' ').title() }}</p>
                             <!-- Action Buttons -->
                             <a href="{{ url_for('main.detailed_view', property_id=property.property_id) }}" class="btn btn-secondary btn-sm">View</a>
@@ -27,6 +27,11 @@
                             <form action="{{ url_for('main.delete_from_wishlist', property_id=property.property_id) }}" method="POST" style="display:inline;">
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this property from your wishlist?');">Delete</button>
                             </form>
+                            <!-- Book Now Button -->
+                            <form action="{{ url_for('main.book_property', property_id=property.property_id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-success btn-sm">Book Now</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>

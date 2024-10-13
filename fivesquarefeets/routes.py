@@ -7,7 +7,7 @@ from fivesquarefeets.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from fivesquarefeets.models import User, Property,Wishlist,Booking,Review
 from flask_login import login_user, current_user, logout_user, login_required
 from sqlalchemy import or_
-
+from datetime import datetime 
 
 # Create a Blueprint for your routes
 bp = Blueprint('main', __name__)
@@ -301,3 +301,45 @@ def property_detail(property_id):
     property = Property.query.get_or_404(property_id)
     return render_template('property_detail.html', property=property)
 
+@bp.route('/book/<int:property_id>', methods=['GET', 'POST'])
+@login_required
+def book_property(property_id):
+    property = Property.query.get_or_404(property_id)
+    
+    if request.method == 'POST':
+        # Create a new booking with the status "Confirmed"
+        new_booking = Booking(
+            user_id=current_user.id,
+            property_id=property_id,
+            booking_date=datetime.utcnow(),
+            status="Confirmed"  # Set the booking status to "Confirmed"
+        )
+        db.session.add(new_booking)
+        db.session.commit()
+        flash('Booking has been confirmed!', 'success')
+        return redirect(url_for('main.bookings'))  # Redirect to the bookings page
+
+    return render_template('book_property.html', property=property)
+
+
+@bp.route('/bookings')
+@login_required
+def bookings():
+    # Fetch the user's bookings
+    user_bookings = Booking.query.filter_by(user_id=current_user.id).all()
+    return render_template('bookings.html', bookings=user_bookings)
+
+@bp.route('/delete_booking/<int:booking_id>', methods=['POST'])
+@login_required
+def delete_booking(booking_id):
+    booking = Booking.query.get_or_404(booking_id)
+
+    # Check if the current user owns the booking before deleting
+    if booking.user_id == current_user.id:
+        db.session.delete(booking)
+        db.session.commit()
+        flash('Booking has been deleted!', 'success')
+    else:
+        flash('You do not have permission to delete this booking.', 'danger')
+
+    return redirect(url_for('main.bookings'))

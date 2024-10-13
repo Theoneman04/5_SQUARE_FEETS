@@ -8,7 +8,7 @@
     <p><strong>Address:</strong> {{ property.address }}</p>
     <p><strong>Type:</strong> {{ property.property_type }}</p>
     <p><strong>Status:</strong> {{ property.status }}</p>
-    <p><strong>Price:</strong> ${{ property.price }}</p>
+    <p><strong>Price:</strong> ₹{{ property.price }}</p>
     <p><strong>Description:</strong> {{ property.description }}</p>
     <h5>Published by: {{ property.author.username }}</h5>
     <a href="{{ url_for('main.all_properties') }}" class="btn btn-secondary">Back to Properties</a>
@@ -17,12 +17,15 @@
     <form action="{{ url_for('main.add_to_wishlist', property_id=property.property_id) }}" method="POST" style="margin-top: 20px;">
         <button type="submit" class="btn btn-primary">Add to Wishlist</button>
     </form>
+    
+    <!-- Book Now Button -->
+    <form action="{{ url_for('main.book_property', property_id=property.property_id) }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-success btn-sm">Book Now</button>
+    </form>
 
     <h2>{{ property.property_title }}</h2>
     
-    
     <!-- Display average reviews -->
-    
     <h3>Average Rating: 
         {% if property.reviews|length > 0 %}
             {{ (property.reviews|map(attribute='rating')|sum) / (property.reviews|length) }}
@@ -30,7 +33,6 @@
             No ratings yet.
         {% endif %}
     </h3>
-    
 
     <!-- Display existing reviews -->
     <h3>Reviews</h3>
@@ -49,7 +51,6 @@
     
     <!-- Review Button -->
     <a href="{{ url_for('main.add_review', property_id=property.property_id) }}" class="btn btn-primary">Add a Review</a>
-    
     
 </div>
 {% endblock %}

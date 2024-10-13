@@ -26,6 +26,15 @@
         </div>
     </a>
 
+    <a href="{{ url_for('main.bookings') }}">
+        <div class="button-container">
+            <div class="offer-button">
+                <img src="/static/bookings.png" alt="Bookings" class="offer-image">
+                <p class="offer-title">Bookings</p>
+            </div>
+        </div>
+    </a>
+
     <!-- Properties Thumbnails -->
     <div class="row">
         {% if properties %}
@@ -41,7 +50,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ property.property_title }}</h5>
                             <p class="card-text"><strong>Location:</strong> {{ property.location }}</p>
-                            <p class="card-text"><strong>Price:</strong> ${{ "{:,.2f}".format(property.price) }}</p>
+                            <p class="card-text"><strong>Price:</strong>  ₹{{ "{:,.2f}".format(property.price) }}</p>
                             <p class="card-text"><strong>Status:</strong> {{ property.status.replace('_', ' ').title() }}</p>
                             <!-- Action Buttons -->
                             <a href="{{ url_for('main.view_property', property_id=property.property_id) }}" class="btn btn-secondary btn-sm">View</a>
