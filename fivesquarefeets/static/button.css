@@ -9,7 +9,7 @@
 
 .offer-button {
     width: 200px;
-    height: 250px;
+    height: 200px;
     background-color: #185d9a;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -27,8 +27,8 @@
 }
 
 .offer-image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
 }
 
@@ -106,7 +106,7 @@
 
 
 .card-image-size {
-    width: 212px;  
+    width: 260px;  
     height: 200px; 
     object-fit: cover;
     display: block;
@@ -114,66 +114,248 @@
 }
 
 
-
+.search-result-image-size {
+    width: 257px;  
+    height: 200px; 
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
 
 
 .registration-container-register {
-    max-width: 400px; /* Limit the width of the form */
+    max-width: 400px; 
     margin: 25px auto; /* Center the form horizontally */
     padding: 20px;
-    background: white; /* Background color of the form */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
 }
 
 .form-title-register {
-    text-align: center; /* Center the title */
-    margin-bottom: 20px; /* Space below the title */
-    color:  #00A1B6; /* Color of the title */
+    text-align: center; 
+    margin-bottom: 20px;
+    color:  #00A1B6; 
 }
 
 .form-group-register {
-    margin-bottom: 15px; /* Space between form groups */
+    margin-bottom: 15px; 
 }
 
 label {
-    font-weight: bold; /* Bold labels */
+    font-weight: bold;
 }
 
 .form-control-register {
-    width: 100%; /* Full-width inputs */
-    padding: 10px; /* Padding inside inputs */
-    border: 1px solid #ccc; /* Border color */
-    border-radius: 5px; /* Rounded corners for inputs */
-    transition: border-color 0.3s; /* Smooth transition for border color */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+    transition: border-color 0.3s; 
 }
 
 .form-control-register:focus {
-    border-color: #00A1B6; /* Border color on focus */
-    outline: none; /* Remove outline */
+    border-color: #00A1B6;
+    outline: none;
 }
 
 .btn-submit-register {
-    width: 100%; /* Full-width button */
-    padding: 10px; /* Padding inside button */
-    background: linear-gradient(90deg,  #135097, #00A1B6); /* Gradient background */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(90deg,  #135097, #00A1B6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; 
+    cursor: pointer;
 }
 
 .btn-submit-register:hover {
-    background: #00A1B6; /* Darker gradient on hover */
+    background: #00A1B6;
 }
 
 .already-have-account-register {
-    text-align: center; /* Center the text */
-    margin-top: 15px; /* Space above */
+    text-align: center;
+    margin-top: 15px;
 }
 
 .already-have-account-register a {
-    color: #1F9B9F; /* Link color */
-    text-decoration: none; /* Remove underline */
+    color: #1F9B9F;
+    text-decoration: none;
+}
+
+
+/* Modal Search Styling */
+.search-modal-content {
+    border-radius: 10px;
+    background-color: #f9f9f9; 
+    padding: 20px;
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar-container {
+    display: flex;
+    width: 100%;
+    max-width: 500px; 
+}
+
+.search-bar {
+    width: 80%;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    font-size: 1rem;
+    color: #002444;
+}
+
+.search-bar::placeholder {
+    color: #002444;
+}
+
+.search-btn {
+    width: 20%;
+    background-color: #002444;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-btn i {
+    font-size: 1.2rem;
+}
+
+.search-btn:hover {
+    background-color: #04467f;
+}
+
+
+
+
+/* Account Page Styling */
+.content-section-account {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.account-img-account {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #007bff;
+    object-fit: cover;
+}
+
+.account-heading-account {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.media-body-account p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Form Styling */
+.form-control-lg-account {
+    font-size: 1.1rem;
+    padding: 12px 15px;
+}
+
+.form-group-account {
+    margin-bottom: 20px;
+}
+
+.legend-account {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.btn-outline-info-account {
+    border-color: #007bff;
+    color: #007bff;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-info-account:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .account-img-account {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .account-heading-account {
+        font-size: 1.5rem;
+    }
+    
+    .btn-lg-account {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+
+.review-form-container {
+    background: #002444;
+    border-radius: 10px;
+    padding: 40px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    margin: 25px auto; /* Center the form horizontally */
+
+}
+
+.review-form-container h2 {
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+
+.review-form-group {
+    margin-bottom: 20px;
+}
+
+.review-form-control {
+    border-radius: 25px;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.review-label {
+    color: white;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.btn-review-submit {
+    background: #125896;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-review-submit:hover {
+    background: #04467f;
 }

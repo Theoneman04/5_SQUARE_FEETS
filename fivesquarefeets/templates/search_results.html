@@ -2,22 +2,41 @@
 
 {% block content %}
 <h2>Search Results for "{{ query }}"</h2>
+
 {% if properties %}
-    <ul class="list-group">
-        {% for property in properties %}
-            <li class="list-group-item">
-                <a href="{{ url_for('main.property_detail', property_id=property.property_id) }}">
-                    {{ property.property_title }}
-                </a>
-                <p>Location: {{ property.location }}</p>
-                <p>Type: {{ property.property_type }}</p>
-                <p>Status: {{ property.status }}</p>
-                <p>Price: {{ property.price }}</p>
-            </li>
-        {% endfor %}
-    
-    </ul>
+    <div class="container">
+        <div class="row">
+            {% for property in properties %}
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="search-result-image-size" alt="{{ property.property_title }}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{{ url_for('main.property_detail', property_id=property.property_id) }}">
+                                            {{ property.property_title }}
+                                        </a>
+                                    </h5>
+                                    <p class="card-text">{{ property.description | truncate(150) }}</p>
+                                    <p class="card-text">
+                                        <small class="text-muted">Location: {{ property.location }}</small><br>
+                                        <small class="text-muted">Type: {{ property.property_type }}</small><br>
+                                        <small class="text-muted">Status: {{ property.status }}</small><br>
+                                        <small class="text-muted">Price: ${{ property.price }}</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% else %}
     <p>No properties found matching your search.</p>
 {% endif %}
+
 {% endblock %}

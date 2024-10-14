@@ -1,20 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h2>Review {{ property.property_title }}</h2>
+<div class="review-form-container">
+    <h2>Review for {{ property.property_title }}</h2>
 
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        <div class="form-group">
-            {{ form.rating.label }}<br>
-            {{ form.rating(class="form-control") }}
+        <div class="review-form-group">
+            {{ form.rating.label(class="review-label") }}<br>
+            {{ form.rating(class="review-form-control") }}
         </div>
-        <div class="form-group">
-            {{ form.comment.label }}<br>
-            {{ form.comment(class="form-control") }}
+        <div class="review-form-group">
+            {{ form.comment.label(class="review-label") }}<br>
+            {{ form.comment(class="review-form-control") }}
         </div>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-success") }}
+        <div class="review-form-group">
+            {{ form.submit(class="btn-review-submit") }}
         </div>
     </form>
-
-{% endblock content%}
+</div>
+{% endblock content %}
