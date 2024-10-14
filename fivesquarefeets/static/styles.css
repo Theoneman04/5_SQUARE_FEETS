@@ -1,0 +1,161 @@
+/* Remove any default margins or paddings from all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the body and html occupy full height and width with no overflow */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* Adjust the hero section to fully cover the viewport */
+.hero-section-new {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Ensure the slider covers the full screen */
+.slider-new {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Ensure the slides take full screen space */
+.slides-new {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.slide-new {
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Video adjustment to fully cover the screen */
+video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Make sure the heading text appears above the video */
+.hero-section-new h2 {
+    font-family: 'Playfair Display', serif;
+    position: absolute;
+    z-index: 10;
+    top: 20%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    z-index: 2; /* Ensures the text appears above the video */
+    font-size: 3em;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Control the appearance and position of the prev/next buttons */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* Footer styling */
+.footer {
+    background-color: #ffffff; /* New background color */;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+.footer div {
+    flex: 1; /* Distribute equal space */
+    margin: 0 10px; /* Add some margin for spacing */
+}
+footer h4, footer h5 {
+    font-family: 'Georgia', serif;
+}
+.footer .help-support h4 {
+    font-size: 1.25rem; /* Adjust this value as needed to match the size of 'Contact Us' */
+}
+
+.footer .contact-info h5 {
+    font-size: 1.25rem; /* Use the same size for 'Contact Us' */
+}
+
+footer p, footer a {
+    font-family: 'Raleway', sans-serif;
+    color: #002444;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+.custom-help-btn {
+    background-color: #28a745; /* Custom background color (green) */
+    color: white; /* Text color */
+    border: 1px solid #28a745; /* Border color matching background */
+    padding: 10px 20px; /* Adjust padding */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.custom-help-btn:hover {
+    background-color: #218838; /* Darker shade on hover */
+    border-color: #1e7e34; /* Slightly darker border on hover */
+}
+
+.contact-info-wrapper {
+    display: flex;
+    justify-content: center;  /* Centers the "Contact Us" section */
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact-info {
+    text-align: center;  /* Center the text inside the "Contact Us" block */
+}
+
+.social-icons {
+    display: flex;          /* Use flexbox to arrange items in a row */
+    justify-content: center; /* Evenly distribute space between items */
+    margin-right: 5px;
+}
+
+.social-icons .social-icon img {
+    width: 24px;           /* Set a smaller width for the images */
+    height: auto;          /* Maintain aspect ratio */
+    margin: 0 5px;       /* Add some space between icons */
+}
