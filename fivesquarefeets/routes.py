@@ -17,7 +17,8 @@ def home():
 
 @bp.route("/about")
 def about():
-    return render_template('about.html', title='About')
+    image_f = url_for('static', filename='home_long.jpeg')
+    return render_template('about.html', title='About',image_f=image_f)
 
 @bp.route("/register", methods=['GET', 'POST'])
 def register():

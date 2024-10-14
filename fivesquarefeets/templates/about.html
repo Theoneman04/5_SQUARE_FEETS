@@ -1,4 +1,63 @@
 {% extends "layout.html" %}
+
 {% block content %}
-    <h1>About Page</h1>
-{% endblock content%}
+<section class="about-section body-about">
+  <style>
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        color: #333;
+        line-height: 1.6;
+        background-image: url("{{ url_for('static', filename='building .jpg') }}");
+        background-size: cover;
+        background-position: center;
+    }
+    
+  </style>
+  <div class="container text-center">
+    <h1 class="display-4">About Us</h1>
+    <p class="lead">Every property we showcase is handpicked with care. We understand that your ideal home is more than just square footage. it's about finding a place that feels right. With a keen eye for detail and a passion for design, we aim to provide you with options that inspire and excite,helping you envision a life well-lived</p>
+  </div>
+  
+  <!-- <div class="image-container">
+    <img src="{{ url_for('static', filename='home_long.jpg') }}" alt="Beautiful House" >
+  </div> -->
+
+  <div class="container superpowers">
+    <h2>Our Superpowers</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>Our platform streamlines your property search with an elegant, intuitive design, helping you find the perfect home or investment effortlessly.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>You need not worry about surfing around a huge vague category, but a precisely organized local data listing.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>It’s just get, set, and go! So easy to make your decisions by mapping, virtual tour, genuine reviews, AI & ML etc.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>Our heart is so big that we made our website customized for property listing best fit for builders or agents.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>Of course, we are open to talking about market consulting and amazing promotions.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="superpower-box">
+          <p>More exposure ensures your property is recognized and valued fairly in the real estate landscape.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% endblock %}
