@@ -43,3 +43,77 @@
     font-size: 16px;
     text-align: center;
 }
+
+
+.card-image-size {
+    width: 212px;  
+    height: 200px; 
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+}
+
+
+
+
+
+.registration-container-register {
+    max-width: 400px; /* Limit the width of the form */
+    margin: 25px auto; /* Center the form horizontally */
+    padding: 20px;
+    background: white; /* Background color of the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.form-title-register {
+    text-align: center; /* Center the title */
+    margin-bottom: 20px; /* Space below the title */
+    color:  #00A1B6; /* Color of the title */
+}
+
+.form-group-register {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+label {
+    font-weight: bold; /* Bold labels */
+}
+
+.form-control-register {
+    width: 100%; /* Full-width inputs */
+    padding: 10px; /* Padding inside inputs */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 5px; /* Rounded corners for inputs */
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.form-control-register:focus {
+    border-color: #00A1B6; /* Border color on focus */
+    outline: none; /* Remove outline */
+}
+
+.btn-submit-register {
+    width: 100%; /* Full-width button */
+    padding: 10px; /* Padding inside button */
+    background: linear-gradient(90deg,  #135097, #00A1B6); /* Gradient background */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.btn-submit-register:hover {
+    background: #00A1B6; /* Darker gradient on hover */
+}
+
+.already-have-account-register {
+    text-align: center; /* Center the text */
+    margin-top: 15px; /* Space above */
+}
+
+.already-have-account-register a {
+    color: #1F9B9F; /* Link color */
+    text-decoration: none; /* Remove underline */
+}

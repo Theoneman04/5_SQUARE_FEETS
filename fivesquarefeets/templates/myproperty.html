@@ -6,18 +6,18 @@
     
     <!-- New Property Button -->
     <a href="{{ url_for('main.add_property') }}">
-        <div class="button-container">
-            <div class="offer-button">
-                <img src="/static/new_property.png" alt="Keyboard" class="offer-image">
-                <p class="offer-title">Add a New Property</p>
-            </div>
+    <div class="button-container">
+        <div class="offer-button">
+            <img src="/static/new.png" alt="Keyboard" class="offer-image">
+            <p class="offer-title">Add a New Property</p>
         </div>
+    </div>
     </a>
-    
-    
-    
-    <!-- Go to Wishlist Button -->
-    <a href="{{ url_for('main.wishlist') }}">
+
+
+
+     <!-- Go to Wishlist Button -->
+     <a href="{{ url_for('main.wishlist') }}">
         <div class="button-container">
             <div class="offer-button">
                 <img src="/static/wishlist.png" alt="Keyboard" class="offer-image">
@@ -26,31 +26,26 @@
         </div>
     </a>
 
-    <a href="{{ url_for('main.bookings') }}">
-        <div class="button-container">
-            <div class="offer-button">
-                <img src="/static/bookings.png" alt="Bookings" class="offer-image">
-                <p class="offer-title">Bookings</p>
-            </div>
-        </div>
-    </a>
 
+    
+        
+    
     <!-- Properties Thumbnails -->
     <div class="row">
         {% if properties %}
             {% for property in properties %}
                 <div class="col-md-4 mb-4">
-                    <div class="card h-100">
+                    <div class="card shadow-sm border-0 rounded">
                         {% if property.images %}
                             <!-- Display the first image from the images string -->
-                            <img src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="card-img-top" alt="{{ property.property_title }}">
+                            <img class="card-image-size" src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="card-img-top" alt="{{ property.property_title }}">
                         {% else %}
-                            <img src="{{ url_for('static', filename='images/default_property.png') }}" class="card-img-top" alt="No Image Available">
+                            <img class="card-image-size" src="{{ url_for('static', filename='images/default_property.png') }}" class="card-img-top" alt="No Image Available">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ property.property_title }}</h5>
                             <p class="card-text"><strong>Location:</strong> {{ property.location }}</p>
-                            <p class="card-text"><strong>Price:</strong>  ₹{{ "{:,.2f}".format(property.price) }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ "{:,.2f}".format(property.price) }}</p>
                             <p class="card-text"><strong>Status:</strong> {{ property.status.replace('_', ' ').title() }}</p>
                             <!-- Action Buttons -->
                             <a href="{{ url_for('main.view_property', property_id=property.property_id) }}" class="btn btn-secondary btn-sm">View</a>
