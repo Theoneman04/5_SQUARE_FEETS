@@ -51,7 +51,7 @@
         <ul class="view">
             {% for review in property.reviews %}
             <li class="view">
-                <strong class="view">{{ review.reviewer.username }}</strong> - {{ review.rating }}/5
+                <strong class="view">{{ review.reviewer.username }}</strong> -> {{ review.rating }}/5
                 <p class="view">{{ review.comment }}</p>
             </li>
             {% endfor %}
