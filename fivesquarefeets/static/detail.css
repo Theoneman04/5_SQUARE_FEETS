@@ -1,0 +1,173 @@
+/* Background Image Styling */
+body-view {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff); /* Soft blue to white */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Property Title Styling */
+h1.my-4-view {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2a0957;
+}
+
+/* Image Styling */
+img.img-fluid-view {
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
+/* Property Details Styling */
+p-view {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+h5-view {
+    font-size: 1.3rem;
+    margin-top: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Button Styling */
+/* General Button Styling */
+.btn-view {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    transition: background 0.4s ease, transform 0.3s ease;
+    display: inline-block;
+    width: 50%; /* Ensures buttons take up full width for consistency */
+    margin-bottom: 15px; /* Adds spacing between buttons */
+    text-align: center;
+}
+
+.btn-view:hover {
+    background: linear-gradient(45deg, #0056b3, #004080);
+    transform: scale(1.05);
+}
+
+/* Specific Button Types */
+.btn-primary-view {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.btn-primary-view:hover {
+    background: linear-gradient(45deg, #0056b3, #004080);
+}
+
+.btn-success-view {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.btn-success-view:hover {
+    background: linear-gradient(45deg, #0056b3, #004080);
+}
+
+.btn-secondary-view {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+}
+
+.btn-secondary-view:hover {
+    background: linear-gradient(45deg, #0056b3, #004080);
+}
+
+/* Reviews Section Styling */
+ul-view {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul-view li-view {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+ul-view li-view:hover {
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+ul-view li-view strong-view {
+    font-size: 1.4rem;
+    color: #333;
+}
+
+ul-view li-view p-view {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Modal Styling */
+.modal-content-view {
+    padding: 30px;
+    background-color: #7c97b8;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header-view {
+    border-bottom: none;
+    padding-bottom: 15px;
+}
+
+.modal-title-view {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.modal-body-view {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.close-view {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* General Page Layout */
+.container-view {
+    margin-top: 40px;
+}
+
+.form-group-view label-view {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group-view input-view {
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+}
+
+.form-group-view input-view:focus {
+    border-color: #007bff;
+}
+
+.form-group-view button-view {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    font-weight: bold;
+}

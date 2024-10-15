@@ -1,32 +1,43 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container">
-    <h1 class="my-4">{{ property.property_title }}</h1>
-    <img src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="img-fluid mb-4" alt="{{ property.property_title }}">
-    <h5>Details</h5>
-    <p><strong>Location:</strong> {{ property.location }}</p>
-    <p><strong>Address:</strong> {{ property.address }}</p>
-    <p><strong>Type:</strong> {{ property.property_type }}</p>
-    <p><strong>Status:</strong> {{ property.status }}</p>
-    <p><strong>Price:</strong> ₹{{ property.price }}</p>
-    <p><strong>Description:</strong> {{ property.description }}</p>
-    <h5>Published by: {{ property.author.username }}</h5>
-    <a href="{{ url_for('main.all_properties') }}" class="btn btn-secondary">Back to Properties</a>
+<div class="container-view">
+    <!-- <style>
+        body {
+    background-image:url("{{ url_for('static', filename='build.jpg') }}"); /* Replace with the path to your image */
+    background-size: cover; /* Ensures the image covers the entire background */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the background fixed during scrolling */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    font-family: Arial, sans-serif; /* Just for consistent font */
+}
+    </style> -->
+    <h1 class="my-4-view">{{ property.property_title }}</h1>
+    <img src="{{ url_for('static', filename='property_pics/' + property.images.split(',')[0].strip()) }}" class="img-fluid-view mb-4" alt="{{ property.property_title }}">
+    <h5 class="view">Details</h5>
+    <p class="view"><strong>Location:</strong> {{ property.location }}</p>
+    <p class="view"><strong>Address:</strong> {{ property.address }}</p>
+    <p class="view"><strong>Type:</strong> {{ property.property_type }}</p>
+    <p class="view"><strong>Status:</strong> {{ property.status }}</p>
+    <p class="view"><strong>Price:</strong> ₹{{ property.price }}</p>
+    <p class="view"><strong>Description:</strong> {{ property.description }}</p>
+    <h5 class="view">Published by: {{ property.author.username }}</h5>
     
     <!-- Add to Wishlist Button -->
     <form action="{{ url_for('main.add_to_wishlist', property_id=property.property_id) }}" method="POST" style="margin-top: 20px;">
-        <button type="submit" class="btn btn-primary">Add to Wishlist</button>
+        <button type="submit" class="btn-view btn-primary-view">Add to Wishlist</button>
     </form>
     
     <!-- Book Now Button -->
     <form action="{{ url_for('main.book_property', property_id=property.property_id) }}" method="POST" style="display:inline;">
-        <button type="submit" class="btn btn-success btn-sm">Book Now</button>
+        <button type="submit" class="btn-view btn-success-view btn-sm">Book Now</button>
     </form>
 
-    <h2>{{ property.property_title }}</h2>
+    <a href="{{ url_for('main.all_properties') }}" class="btn-view btn-secondary-view">Back to Properties</a>
+
+    <h2 class="view">{{ property.property_title }}</h2>
     
     <!-- Display average reviews -->
-    <h3>Average Rating: 
+    <h3 class="view">Average Rating: 
         {% if property.reviews|length > 0 %}
             {{ (property.reviews|map(attribute='rating')|sum) / (property.reviews|length) }}
         {% else %}
@@ -35,22 +46,23 @@
     </h3>
 
     <!-- Display existing reviews -->
-    <h3>Reviews</h3>
+    <h3 class="view">Reviews</h3>
     {% if property.reviews %}
-        <ul>
+        <ul class="view">
             {% for review in property.reviews %}
-            <li>
-                <strong>{{ review.reviewer.username }}</strong> - {{ review.rating }}/5
-                <p>{{ review.comment }}</p>
+            <li class="view">
+                <strong class="view">{{ review.reviewer.username }}</strong> - {{ review.rating }}/5
+                <p class="view">{{ review.comment }}</p>
             </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>No reviews yet. Be the first to leave a review!</p>
+        <p class="view">No reviews yet. Be the first to leave a review!</p>
     {% endif %}
     
     <!-- Review Button -->
-    <a href="{{ url_for('main.add_review', property_id=property.property_id) }}" class="btn btn-primary">Add a Review</a>
+    <a href="{{ url_for('main.add_review', property_id=property.property_id) }}" class="btn-view btn-primary-view">Add a Review</a>
     
 </div>
 {% endblock %}
+
