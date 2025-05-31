@@ -6,7 +6,7 @@
 
 This system seamlessly integrates critical functionalities such as secure user authentication, dynamic property listings, powerful search and filtering options, streamlined booking management, personalized wishlists, and an interactive review system. By bringing these features together, 5 SQUARE FEETS enhances transparency, simplifies property discovery, and fosters a vibrant community-driven marketplace.
 
-Designed with scalability and user experience in mind, 5 SQUARE FEETS leverages Flask and SQLite to deliver a robust backend, while utilizing modern frontend technologies to ensure responsiveness and ease of use. Ultimately, 5 SQUARE FEETS aims to transform the real estate landscape by making property management efficient, transparent, and accessible for everyone.
+Designed with scalability and user experience in mind, 5 SQUARE FEETS leverages Flask and SQLite to deliver a robust backend, while utilizing modern frontend technologies to ensure responsiveness and ease of use. Ultimately, our project aims to transform the real estate landscape by making property management efficient, transparent, and accessible for everyone.
 
 ---
 
